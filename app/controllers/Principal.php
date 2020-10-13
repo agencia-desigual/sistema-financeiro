@@ -104,10 +104,45 @@ class Principal extends CI_controller
         // Variaveis
         $dados = null;
         $cateogrias = null;
-        $movimentacao = null;
+        $movimentacoes = null;
+
+        // CONTADORES -----------------------
+
+        // ----------------------------------
+
+        // Busca as ultimas 6 categorias
+        $categorias = $this->objModelCategoria
+            ->get(null, "id_categoria DESC", 6)
+            ->fetchAll(\PDO::FETCH_OBJ);
+
+        // Percorre as categorias
+        foreach ($categorias as $categoria)
+        {
+            // Esse mes
+            $data = date("Y-m-") . "01";
+
+            // Busca movimentações desse mes
+            $aux = $this->objModelMovimentacao
+                ->get(["vencimento" >= $data])
+                ->rowCount();
+
+            // Add a categoria
+            $categoria->movimentacao = $aux;
+        }
+
+        // Verifica se encontrou alguma categoria
+        if(!empty($categorias))
+        {
+            // Busca as ultimas 5 movimentacoes
+            $movimentacoes = $this->objModelMovimentacao
+                ->get(null, "id_movimentacao DESC", 5)
+                ->fetchAll(\PDO::FETCH_OBJ);
+        }
 
         // Dados a serem exibidos
         $dados = [
+            "movimentacoes" => $movimentacoes,
+            "categorias" => $categorias,
             "usuario" => $usuario
         ];
 

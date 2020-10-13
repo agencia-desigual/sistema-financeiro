@@ -111,7 +111,6 @@ $("#formAlteraUsuario").on("submit", function () {
     // Recupera os dados do formulário
     var form = new FormData(this);
     var id = $(this).data("id");
-    var refresh = $(this).data("refresh");
     var tipoAlerta = $(this).data("alerta");
 
     // Bloqueia o formulário
@@ -136,21 +135,6 @@ $("#formAlteraUsuario").on("submit", function () {
             {
                 // Avisa que deu certo
                 alertify.success(data.mensagem);
-            }
-
-
-            // Verifica se deve atualizar a página
-            if(refresh === 1)
-            {
-                // Url
-                url = Global.config.urlApi + "usuario/session-refresh";
-
-                // Atualiza a session
-                Global.enviaApi("POST", url, null, token.token)
-                    .then((data) => {
-                        // Salva a session
-                        Global.session.set("usuario", data.objeto.usuario);
-                    });
             }
 
             // Desbloqueia
@@ -211,60 +195,6 @@ $(".deletarUsuario").on("click", function () {
                         .row("#tb_" + id)
                         .remove()
                         .draw(false);
-
-
-                });
-        }
-    });
-
-
-    // Não atualiza mesmo
-    return false;
-});
-
-
-
-/**
- * Método responsável por deletar uma determinada
- * categoria.Enviando a solicitação para a API
- * ----------------------------------------------------------
- */
-$(".alteraStatusUsuario").on("click", function () {
-
-    // Não atualiza a página
-    event.preventDefault();
-
-    // Recupera as informações
-    var id = $(this).data("id");
-
-    // Url e Token
-    var url = Global.config.urlApi + "usuario/delete/" + id;
-    var token = Global.session.get("token");
-
-    // Pergunta se realmente quer deletar
-    Swal.fire({
-        title: 'Alterar Status',
-        text: 'Deseja realmente alterar o status?',
-        type: 'warning',
-        showCancelButton: true,
-        cancelButtonText: 'Cancelar',
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim, altere!'
-    }).then((result) => {
-        if (result.value)
-        {
-            // Realiza a solicitação
-            Global.enviaApi("DELETE", url, null, token.token)
-                .then((data) => {
-
-                    // Avisa que deu certo
-                    Global.setSuccess(data.mensagem);
-
-                    // Remove da tabela
-                    setTimeout(() => {
-                        location.href = window.location.href;
-                    }, 500);
 
 
                 });
