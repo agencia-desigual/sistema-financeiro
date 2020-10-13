@@ -1,15 +1,49 @@
 <?php
 
 // Erro 404
-$Rotas->onError("404", function (){
-   echo "Erro - 404";
-});
+$Rotas->onError("404", "Principal::error404");
 
-// -- Seta os grupos
-//$Rotas->group("Principal","api","Principal");
 
-// -- Rotas de Grupos
-//$Rotas->onGroup("Principal","GET","a","index");
+/**
+ *  ===========================================================
+ *                          ROTAS DA API
+ *  ===========================================================
+ */
 
-// -- Rotas sem grupo
-$Rotas->on("GET","","Principal::index");
+
+// Usuário
+$Rotas->group("api-usuario","api/usuario","Api\Usuario");
+$Rotas->onGroup("api-usuario","POST","login","login");
+$Rotas->onGroup("api-usuario","POST","insert","insert");
+$Rotas->onGroup("api-usuario","POST","update/{p}","update");
+$Rotas->onGroup("api-usuario","DELETE","delete/{p}","delete");
+
+
+// Categoria
+$Rotas->group("api-categoria","api/categoria","Api\Categoria");
+$Rotas->onGroup("api-categoria","POST","insert","insert");
+$Rotas->onGroup("api-categoria","POST","update/{p}","update");
+$Rotas->onGroup("api-categoria","DELETE","delete/{p}","delete");
+
+
+// Movimentacao
+$Rotas->group("api-movimentacao","api/movimentacao","Api\Movimentacao");
+$Rotas->onGroup("api-movimentacao","POST","insert","insert");
+$Rotas->onGroup("api-movimentacao","POST","update/{p}","update");
+$Rotas->onGroup("api-movimentacao","DELETE","delete/{p}","delete");
+
+
+
+/**
+ *  ===========================================================
+ *                        ROTAS DO SISTEMA
+ *  ===========================================================
+ */
+
+
+// Dashboard e Login
+$Rotas->on("GET","","Principal::dashboard");
+$Rotas->on("GET","login","Principal::login");
+
+// Sair
+$Rotas->on("GET","sair","Principal::sair");

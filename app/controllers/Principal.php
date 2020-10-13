@@ -1,31 +1,157 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Igor
- * Date: 26/03/2019
- * Time: 18:29
- */
 
+// NameSpace
 namespace Controller;
 
+// Importações
+use Helper\Apoio;
+use Model\Categoria;
+use Model\Movimentacao;
 use Sistema\Controller as CI_controller;
 
-
+// Inicia a Classe
 class Principal extends CI_controller
 {
+    // Objetos
+    private $objModelCategoria;
+    private $objModelMovimentacao;
+    private $objHelperApoio;
 
     // Método construtor
     function __construct()
     {
         // Carrega o contrutor da classe pai
         parent::__construct();
-    }
+
+        // Instancia os objetos
+        $this->objModelCategoria = new Categoria();
+        $this->objModelMovimentacao = new Movimentacao();
+        $this->objHelperApoio = new Apoio();
+
+    } // End >> fun::__construct();
 
 
-    public function index()
+    /**
+     * Método responsável por configurar a tela de
+     * login, caso o usuário estéja logado, manda
+     * para a dashboard.
+     * ----------------------------------------------
+     * @url login
+     */
+    public function login()
     {
-        echo "TESTE";
-    }
+        // Dados
+        $dados = null;
 
+        // Recupera os dados da sessao
+        $user = (!empty($_SESSION["usuario"])) ? $_SESSION["usuario"] : null;
+
+        // Verifica se o usuário está logado
+        if(!empty($user))
+        {
+            // Redireciona para a tela principal
+            header("Location: " . BASE_URL);
+        }
+        else
+        {
+            // Js
+            $dados["js"] = ["modulos" => ["Usuario"]];
+
+            // Chama a view
+            $this->view("app/externo/login", $dados);
+        }
+
+    } // End >> fun::login()
+
+
+    /**
+     * Método responsável por chama a dashboard correta
+     * de acordo com o nivel do usuário logado.
+     * -------------------------------------------------
+     * @url BASE_URL
+     */
+    public function dashboard()
+    {
+        // Variaveis
+        $usuario = null;
+
+        // Recupera o usuário
+        $usuario = $this->objHelperApoio->seguranca();
+
+        // Verifica se é admin
+        if($usuario->nivel == "admin")
+        {
+            // Chama o método admin
+            $this->dashboardAdmin($usuario);
+        }
+        else
+        {
+            // Chama o método usuário
+            $this->dashboardUser($usuario);
+        }
+
+    } // End >> fun::dashboard()
+
+
+    /**
+     * Método responsável por buscar todas as informações
+     * necessárias para configurar a dashboard do admin.
+     * --------------------------------------------------
+     * @param $usuario
+     */
+    public function dashboardAdmin($usuario)
+    {
+        // Variaveis
+        $dados = null;
+        $cateogrias = null;
+        $movimentacao = null;
+
+        // Dados a serem exibidos
+        $dados = [
+            "usuario" => $usuario
+        ];
+
+        // Chama a view
+        $this->view("app/dashboard/admin", $dados);
+
+    } // End >> fun::dashboardAdmin()
+
+
+    public function dashboardUser($usuario)
+    {
+
+
+    } // End >> fun::dashboardUser()
+
+
+
+    /**
+     * Método responsável por montar a página de sair para a
+     * loja e o administrador.
+     * ------------------------------------------------------
+     * @url /sair
+     */
+    public function sair()
+    {
+        // Destroi a session
+        session_destroy();
+
+        // Chama a página de sair
+        $this->view("app/externo/sair");
+
+    }// End >> fun::sair()
+
+
+    /**
+     * Método responsável por montar uma página de erro
+     * 404. Buscando os dados necessários para montar
+     * a exibição da mesma.
+     */
+    public function error404()
+    {
+        // View
+        $this->view("error/404");
+
+    } // End >> fun::erro404()
 
 } // END::Class Principal

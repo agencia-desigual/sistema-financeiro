@@ -73,6 +73,7 @@ class Usuario extends Controller
 
                     // Salva a session
                     $_SESSION["usuario"] = $usuario;
+                    $_SESSION["token"] = $token;
 
                     // Array de retorno
                     $dados = [

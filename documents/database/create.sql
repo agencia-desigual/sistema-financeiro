@@ -28,7 +28,6 @@ CREATE TABLE categoria(
   id_categoria INT NOT NULL AUTO_INCREMENT,
   nome VARCHAR(100) NOT NULL,
   descricao TEXT NULL DEFAULT NULL,
-  imagem VARCHAR(150) NULL DEFAULT NULL,
   PRIMARY KEY (id_categoria)
 );
 

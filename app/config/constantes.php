@@ -1,7 +1,7 @@
 <?php
 
 // Nome do App
-define("SITE_NOME", "Nome do Site");
+define("SITE_NOME", "Desigual");
 
 
 /**
