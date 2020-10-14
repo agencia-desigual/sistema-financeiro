@@ -284,21 +284,11 @@ class Usuario extends Controller
                 }
 
                 // Verifica se vai alterar a senha
-                if(!empty($post["senha"]) && !empty($post["repete_senha"]))
+                if(!empty($post["senha"]) && $post["senha"] != $obj->senha)
                 {
-                    // Verifica se não são parecidos
-                    if($post["senha"] != $post["repete_senha"])
-                    {
-                        // Avisa que não são identicas
-                        $this->api(["mensagem" => "Senhas informadas não são idênticas."]);
-                    }
-
                     // Criptografa a senha
                     $post["senha"] = md5($post["senha"]);
                 }
-
-                // Remove o repete senha
-                unset($post["repete_senha"]);
 
 
                 // Altera e verifica
