@@ -106,7 +106,47 @@ class Principal extends CI_controller
         $cateogrias = null;
         $movimentacoes = null;
 
+        // Esse mes
+        $data = date("Y-m-") . "01";
+
         // CONTADORES -----------------------
+
+        // Entradas de dinheito -----
+        $auxEntradas = $this->objModelMovimentacao
+            ->get(
+                ["vencimento" => $data, "tipo" => "entrada"],
+                null,
+                null,
+                "SUM(valor) as total"
+            )
+            ->fetch(\PDO::FETCH_OBJ);
+
+        $numEntrada = $auxEntradas->total;
+
+
+        // Saidas de dinheiro -------
+        $auxSaida = $this->objModelMovimentacao
+            ->get(
+                ["vencimento" => $data, "tipo" => "saida"],
+                null,
+                null,
+                "SUM(valor) as total"
+            )
+            ->fetch(\PDO::FETCH_OBJ);
+
+        $numSaida = $auxSaida->total;
+
+
+        // Movimentações apenas esse mes
+        $numMovimentacao = $this->objModelMovimentacao
+            ->get(["vencimento" => $data])
+            ->rowCount();
+
+
+        // Categoria ativas
+        $numCategoria = $this->objModelCategoria
+            ->get()
+            ->rowCount();
 
         // ----------------------------------
 
@@ -118,9 +158,6 @@ class Principal extends CI_controller
         // Percorre as categorias
         foreach ($categorias as $categoria)
         {
-            // Esse mes
-            $data = date("Y-m-") . "01";
-
             // Busca movimentações desse mes
             $aux = $this->objModelMovimentacao
                 ->get(["vencimento" >= $data])
@@ -141,6 +178,11 @@ class Principal extends CI_controller
 
         // Dados a serem exibidos
         $dados = [
+            "numEntrada" => $numEntrada,
+            "numSaida" => $numSaida,
+            "numMovimentacao" => $numMovimentacao,
+            "numCategoria" => $numCategoria,
+
             "movimentacoes" => $movimentacoes,
             "categorias" => $categorias,
             "usuario" => $usuario
