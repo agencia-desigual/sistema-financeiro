@@ -114,7 +114,7 @@ class Principal extends CI_controller
         // Entradas de dinheito -----
         $auxEntradas = $this->objModelMovimentacao
             ->get(
-                ["vencimento" => $data, "tipo" => "entrada"],
+                ["vencimento >=" => $data, "tipo" => "entrada"],
                 null,
                 null,
                 "SUM(valor) as total"
@@ -127,7 +127,7 @@ class Principal extends CI_controller
         // Saidas de dinheiro -------
         $auxSaida = $this->objModelMovimentacao
             ->get(
-                ["vencimento" => $data, "tipo" => "saida"],
+                ["vencimento >=" => $data, "tipo" => "saida"],
                 null,
                 null,
                 "SUM(valor) as total"
@@ -139,7 +139,7 @@ class Principal extends CI_controller
 
         // Movimentações apenas esse mes
         $numMovimentacao = $this->objModelMovimentacao
-            ->get(["vencimento" => $data])
+            ->get(["vencimento >=" => $data])
             ->rowCount();
 
 
@@ -194,9 +194,18 @@ class Principal extends CI_controller
     } // End >> fun::dashboardAdmin()
 
 
+
+    /**
+     * Método responsável por chamar a view de listagem
+     * de movimentações e exibir como dashboard.
+     * --------------------------------------------------
+     * @param $usuario
+     */
     public function dashboardUser($usuario)
     {
-
+        // Exibe a dashboard
+        $aux = new \Controller\Movimentacao();
+        $aux->listar();
 
     } // End >> fun::dashboardUser()
 

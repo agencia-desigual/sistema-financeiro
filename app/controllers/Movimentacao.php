@@ -58,6 +58,12 @@ class Movimentacao extends Controller
             $where = ["id_categoria" => $id];
         }
 
+        if($usuario->nivel == "usuario")
+        {
+            // Where
+            $where["id_usuario"] = $usuario->id_usuario;
+        }
+
 
         // Busca todas as categorias
         $categorias = $this->objModelCategoria
