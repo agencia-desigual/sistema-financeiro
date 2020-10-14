@@ -111,7 +111,7 @@
 
                                 <?php if(!empty($categorias)): ?>
                                     <?php foreach ($categorias as $cat): ?>
-                                        <a href="<?= BASE_URL; ?>categoria/alterar/<?= $cat->id_categoria; ?>" class="friends-suggestions-list">
+                                        <a href="<?= BASE_URL; ?>categoria/editar/<?= $cat->id_categoria; ?>" class="friends-suggestions-list">
                                             <div class="border-bottom position-relative">
                                                 <div class="suggestion-icon float-right mt-2 pt-1">
                                                     <i class="mdi mdi-plus"></i>

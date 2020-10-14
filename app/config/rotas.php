@@ -51,5 +51,9 @@ $Rotas->on("GET","usuario/adicionar","Usuarios::adicionar");
 $Rotas->on("GET","usuario/editar/{p}","Usuarios::editar");
 
 
+// Movimentações
+$Rotas->on("GET","movimentacoes/{p}","Movimentacao::listar");
+$Rotas->on("GET","movimentacoes","Movimentacao::listar");
+
 // Sair
 $Rotas->on("GET","sair","Principal::sair");

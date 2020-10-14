@@ -16,6 +16,14 @@
     <link href="<?= BASE_URL; ?>assets/theme/painel/css/icons.css" rel="stylesheet" type="text/css">
     <link href="<?= BASE_URL; ?>assets/theme/painel/css/style.css" rel="stylesheet" type="text/css">
 
+    <!-- DataTables -->
+    <link href="<?= BASE_URL; ?>assets/theme/painel/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= BASE_URL; ?>assets/theme/painel/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="<?= BASE_URL; ?>assets/theme/painel/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+
     <!-- Autoload CSS ================================= -->
     <?php $this->view("autoload/css"); ?>
 
@@ -31,7 +39,7 @@
 
                     <!-- Logo-->
                     <div>
-                        <a href="index.html" class="logo">
+                        <a href="<?= BASE_URL; ?>" class="logo">
                             <span class="logo-light">
                                 <img src="<?= BASE_URL; ?>assets/custom/img/logo.png" />
                             </span>
@@ -53,12 +61,12 @@
                             <!-- Menu user -->
                             <li class="dropdown notification-list list-inline-item">
                                 <div class="dropdown notification-list nav-pro-img">
-                                    <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="<?= BASE_URL; ?>" role="button" aria-haspopup="false" aria-expanded="false">
                                         <img src="<?= BASE_URL; ?>assets/custom/img/user.png" alt="user" class="rounded-circle">
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                         <!-- item-->
-                                        <a class="dropdown-item" href="<?= BASE_URL; ?>usuario/altera/<?= $usuario->id_usuario; ?>">
+                                        <a class="dropdown-item" href="<?= BASE_URL; ?>usuario/editar/<?= $usuario->id_usuario; ?>">
                                             <i class="mdi mdi-account-circle"></i> Meus Dados
                                         </a>
 
@@ -154,7 +162,7 @@
                                     <li>
                                         <ul>
                                             <li><a href="<?= BASE_URL; ?>movimentacoes">Listar Todas</a></li>
-                                            <li><a href="<?= BASE_URL; ?>movimentacoes/filtro">Filtrar</a></li>
+                                            <li><a href="<?= BASE_URL; ?>movimentacao/adicionar">Nova Movimentação</a></li>
                                         </ul>
                                     </li>
                                 </ul>
