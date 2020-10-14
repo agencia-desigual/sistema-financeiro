@@ -45,5 +45,11 @@ $Rotas->onGroup("api-movimentacao","DELETE","delete/{p}","delete");
 $Rotas->on("GET","","Principal::dashboard");
 $Rotas->on("GET","login","Principal::login");
 
+// Usuarios
+$Rotas->on("GET","usuarios","Usuarios::listar");
+$Rotas->on("GET","usuario/adicionar","Usuarios::adicionar");
+$Rotas->on("GET","usuario/editar/{p}","Usuarios::editar");
+
+
 // Sair
 $Rotas->on("GET","sair","Principal::sair");

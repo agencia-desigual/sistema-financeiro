@@ -129,7 +129,7 @@ $("#formAlteraUsuario").on("submit", function () {
             // Verifica o alerta
             if(tipoAlerta === "swal")
             {
-                Global.setSuccess(data.mensagem);
+                Global.setSuccess('Usuário alterado com sucesso');
             }
             else
             {
@@ -139,6 +139,10 @@ $("#formAlteraUsuario").on("submit", function () {
 
             // Desbloqueia
             $(this).removeClass("bloqueiaForm");
+
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
 
         })
         .catch((error) => {
@@ -198,6 +202,10 @@ $(".deletarUsuario").on("click", function () {
 
 
                 });
+
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
         }
     });
 
