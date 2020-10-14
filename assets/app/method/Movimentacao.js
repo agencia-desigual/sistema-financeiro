@@ -137,3 +137,13 @@ $("#formInserirMovimentacao").on("submit", function () {
     // Não atualiza mesmo
     return false;
 });
+
+
+$("#selectCategoria").on("change",function () {
+
+    // Variaveis
+    var url = $(this).val();
+
+    // Redireciona
+    location.href = url;
+});

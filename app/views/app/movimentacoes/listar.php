@@ -10,7 +10,7 @@
                     <option <?= empty($pag) ? "selected" : ""; ?> value="<?= BASE_URL; ?>movimentacoes">Todas as Categorias</option>
 
                     <?php foreach ($categorias as $cat): ?>
-                        <option value="<?= BASE_URL; ?>movimentacoes/<?= $cat->id_categoria; ?>"><?= $cat->nome; ?></option>
+                        <option <?= ($cat->id_categoria == $pag) ? "selected" : ""; ?> value="<?= BASE_URL; ?>movimentacoes/<?= $cat->id_categoria; ?>"><?= $cat->nome; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
