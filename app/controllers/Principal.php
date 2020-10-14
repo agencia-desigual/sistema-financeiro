@@ -185,7 +185,10 @@ class Principal extends CI_controller
 
             "movimentacoes" => $movimentacoes,
             "categorias" => $categorias,
-            "usuario" => $usuario
+            "usuario" => $usuario,
+            "js" => [
+                "modulos" => ["Grafico"]
+            ]
         ];
 
         // Chama a view

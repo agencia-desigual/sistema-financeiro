@@ -113,6 +113,20 @@ class Movimentacao extends Controller
             ->fetch(\PDO::FETCH_OBJ);
 
 
+        if($usuario->nivel == "admin")
+        {
+            $js = [
+                "modulos" => ["Movimentacao","Grafico"]
+            ];
+        }
+        else
+        {
+            $js = [
+                "modulos" => ["Movimentacao"]
+            ];
+        }
+
+
         // Dados a serem exibidos
         $dados = [
             "numMovimentacao" => $numMovimentacao,
@@ -123,9 +137,7 @@ class Movimentacao extends Controller
             "movimentacoes" => $movimentacoes,
             "usuario" => $usuario,
             "categorias" => $categorias,
-            "js" => [
-                "modulos" => ["Movimentacao"]
-            ]
+            "js" => $js
         ];
 
         // Chama a view

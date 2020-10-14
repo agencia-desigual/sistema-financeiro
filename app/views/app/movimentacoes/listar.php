@@ -17,6 +17,8 @@
         </div>
 
         <?php if($usuario->nivel == "admin"): ?>
+            <input id="idMes" value="<?= $pag; ?>" type="hidden" />
+
             <div class="row">
 
                 <div class="col-sm-6 col-xl-4">
@@ -75,7 +77,7 @@
 
                             <h4 class="mt-0 header-title mb-4">Resumo Anual</h4>
 
-                            <div id="morris-area-example" class="morris-charts morris-chart-height"></div>
+                            <div id="graficoMeses" class="morris-charts morris-chart-height"></div>
 
                         </div>
                     </div>
