@@ -59,6 +59,8 @@ $Rotas->on("GET","categoria/editar/{p}","Categorias::editar");
 // Movimentações
 $Rotas->on("GET","movimentacoes/{p}","Movimentacao::listar");
 $Rotas->on("GET","movimentacoes","Movimentacao::listar");
+$Rotas->on("GET","movimentacao/adicionar","Movimentacao::adicionar");
+$Rotas->on("GET","movimentacao/editar/{p}","Movimentacao::editar");
 
 // Sair
 $Rotas->on("GET","sair","Principal::sair");

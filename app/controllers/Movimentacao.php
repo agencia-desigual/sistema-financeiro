@@ -30,7 +30,14 @@ class Movimentacao extends Controller
     } // End >> fun::__construct()
 
 
-
+    /**
+     * Método responsável por listar todas as movimentações de
+     * todas as categorias ou de uma especifica.
+     * ----------------------------------------------------------
+     * @param null $id [Id da Categoria]
+     * ----------------------------------------------------------
+     * @url movimentacoes/[Id]
+     */
     public function listar($id = null)
     {
         // Variaveis
@@ -120,5 +127,74 @@ class Movimentacao extends Controller
 
     } // End >> fun::listar
 
+
+    /**
+     * Método responsável por criar a página com o formulário de
+     * adição de uma nova movimentação.
+     * ----------------------------------------------------------
+     * @url movimentacao/adicionar
+     */
+    public function adicionar()
+    {
+        // Variaveis
+        $usuario = null;
+        $dados = null;
+        $categorias = null;
+
+        // Recupera o usuário logado
+        $usuario = $this->objHelperApoio->seguranca();
+
+        // Busca as categorias
+        $categorias = $this->objModelCategoria
+            ->get(null, "nome ASC")
+            ->fetchAll(\PDO::FETCH_OBJ);
+
+        // Retorno
+        $dados = [
+            "usuario" => $usuario,
+            "categorias" => $categorias,
+            "js" => [
+                "modulos" => ["Movimentacao"]
+            ]
+        ];
+
+        // View
+        $this->view("app/movimentacoes/adicionar", $dados);
+
+    } // End >> fun::adicionar()
+
+
+    public function editar($id)
+    {
+        // Variaveis
+        $usuario = null;
+        $dados = null;
+        $categorias = null;
+
+        // Recupera o usuário logado
+        $usuario = $this->objHelperApoio->seguranca();
+
+        // Busca as categorias
+        $categorias = $this->objModelCategoria
+            ->get(null, "nome ASC")
+            ->fetchAll(\PDO::FETCH_OBJ);
+
+        $movimentacao = $this->objModelMovimentacao
+            ->get(["id_movimentacao" => $id])
+            ->fetch(\PDO::FETCH_OBJ);
+
+        // Retorno
+        $dados = [
+            "movimentacao" => $movimentacao,
+            "usuario" => $usuario,
+            "categorias" => $categorias,
+            "js" => [
+                "modulos" => ["Movimentacao"]
+            ]
+        ];
+
+        // View
+        $this->view("app/movimentacoes/editar", $dados);
+    }
 
 } // End >> Class::Movimentacao

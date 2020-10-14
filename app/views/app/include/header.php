@@ -110,15 +110,15 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
 
-                            <!-- Dashboard -->
-                            <li class="has-submenu">
-                                <a href="<?= BASE_URL; ?>">
-                                    <i class="icon-accelerator"></i> Dashboard
-                                </a>
-                            </li>
-
-
                             <?php if($usuario->nivel == "admin"): ?>
+
+                                <!-- Dashboard -->
+                                <li class="has-submenu">
+                                    <a href="<?= BASE_URL; ?>">
+                                        <i class="icon-accelerator"></i> Dashboard
+                                    </a>
+                                </li>
+
 
                                 <li class="has-submenu">
                                     <a href="#">
@@ -135,6 +135,7 @@
                                     </ul>
                                 </li>
 
+
                                 <li class="has-submenu">
                                     <a href="#">
                                         <i class="icon-pencil-ruler"></i> Categorias
@@ -150,23 +151,40 @@
                                     </ul>
                                 </li>
 
+
+                                <li class="has-submenu">
+                                    <a href="#">
+                                        <i class="icon-pencil-ruler"></i> Movimentações
+                                        <i class="mdi mdi-chevron-down mdi-drop"></i>
+                                    </a>
+                                    <ul class="submenu megamenu">
+                                        <li>
+                                            <ul>
+                                                <li><a href="<?= BASE_URL; ?>movimentacoes">Listar Todas</a></li>
+                                                <li><a href="<?= BASE_URL; ?>movimentacao/adicionar">Nova Movimentação</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            <?php else: ?>
+
+                                <!-- Dashboard -->
+                                <li class="has-submenu">
+                                    <a href="<?= BASE_URL; ?>">
+                                        <i class="icon-accelerator"></i> Dashboard
+                                    </a>
+                                </li>
+
+
+                                <!-- Dashboard -->
+                                <li class="has-submenu">
+                                    <a href="<?= BASE_URL; ?>movimentacao/adicionar">
+                                        <i class="icon-pencil-ruler"></i> Nova Movimentação
+                                    </a>
+                                </li>
+
                             <?php endif; ?>
-
-
-                            <li class="has-submenu">
-                                <a href="#">
-                                    <i class="icon-pencil-ruler"></i> Movimentações
-                                    <i class="mdi mdi-chevron-down mdi-drop"></i>
-                                </a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="<?= BASE_URL; ?>movimentacoes">Listar Todas</a></li>
-                                            <li><a href="<?= BASE_URL; ?>movimentacao/adicionar">Nova Movimentação</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
 
                         </ul>
                         <!-- End navigation menu -->
