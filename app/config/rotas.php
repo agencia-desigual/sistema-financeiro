@@ -50,6 +50,11 @@ $Rotas->on("GET","usuarios","Usuarios::listar");
 $Rotas->on("GET","usuario/adicionar","Usuarios::adicionar");
 $Rotas->on("GET","usuario/editar/{p}","Usuarios::editar");
 
+// Categoria
+$Rotas->on("GET","categorias","Categorias::listar");
+$Rotas->on("GET","categoria/adicionar","Categorias::adicionar");
+$Rotas->on("GET","categoria/editar/{p}","Categorias::editar");
+
 
 // Sair
 $Rotas->on("GET","sair","Principal::sair");

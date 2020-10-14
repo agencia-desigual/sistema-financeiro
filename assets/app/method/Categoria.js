@@ -45,6 +45,10 @@ $(".deletarCategoria").on("click", function () {
 
 
                 });
+
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
         }
     });
 
