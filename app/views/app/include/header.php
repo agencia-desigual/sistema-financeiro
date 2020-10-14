@@ -121,7 +121,7 @@
                                         <li>
                                             <ul>
                                                 <li><a href="<?= BASE_URL; ?>usuarios">Listar Todas</a></li>
-                                                <li><a href="<?= BASE_URL; ?>usuarios/adicionar">Novo Usuário</a></li>
+                                                <li><a href="<?= BASE_URL; ?>usuario/adicionar">Novo Usuário</a></li>
                                             </ul>
                                         </li>
                                     </ul>
