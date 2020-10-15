@@ -2,8 +2,10 @@
 
 // Dados importantes
 var Dados = {
-    "url": "http://localhost/git/sistema-financeiro/",
-    "urlApi": "http://localhost/git/sistema-financeiro/api/"
+    // "url": "http://localhost/git/sistema-financeiro/",
+    // "urlApi": "http://localhost/git/sistema-financeiro/api/",
+    "url": "https://desigual.com.br/vittalmed/",
+    "urlApi": "https://desigual.com.br/vittalmed/api/"
 }
 
 
