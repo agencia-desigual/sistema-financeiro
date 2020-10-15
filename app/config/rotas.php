@@ -33,6 +33,12 @@ $Rotas->onGroup("api-movimentacao","POST","update/{p}","update");
 $Rotas->onGroup("api-movimentacao","DELETE","delete/{p}","delete");
 
 
+// Movimentacao
+$Rotas->group("api-grafico","api/grafico","Api\Grafico");
+$Rotas->onGroup("api-grafico","GET","meses","graficoMes");
+$Rotas->onGroup("api-grafico","GET","meses/{p}","graficoMes");
+
+
 
 /**
  *  ===========================================================

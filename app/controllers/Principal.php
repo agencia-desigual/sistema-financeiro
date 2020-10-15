@@ -160,7 +160,7 @@ class Principal extends CI_controller
         {
             // Busca movimentações desse mes
             $aux = $this->objModelMovimentacao
-                ->get(["vencimento" >= $data])
+                ->get(["vencimento >=" => $data])
                 ->rowCount();
 
             // Add a categoria
@@ -185,7 +185,10 @@ class Principal extends CI_controller
 
             "movimentacoes" => $movimentacoes,
             "categorias" => $categorias,
-            "usuario" => $usuario
+            "usuario" => $usuario,
+            "js" => [
+                "modulos" => ["Grafico"]
+            ]
         ];
 
         // Chama a view
